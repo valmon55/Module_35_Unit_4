@@ -111,7 +111,7 @@ namespace AwesomeNetwork.Controllers.Account
                 return View("Edit", model);
             }
         }
-        [HttpPost]
+        [HttpGet]
         [Route("UserList")]
         public IActionResult UserList()
         {
@@ -123,7 +123,7 @@ namespace AwesomeNetwork.Controllers.Account
         }
 
         [Route("UserList")]
-        [HttpPost]
+        [HttpGet]
         public IActionResult UserList(string search)
         {
             var model = new SearchViewModel
