@@ -29,18 +29,18 @@ namespace AwesomeNetwork.Controllers.Account
         }
 
 
-        [Route("Login")]
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View("Home/Login");
-        }
+        //[Route("Login")]
+        //[HttpGet]
+        //public IActionResult Login()
+        //{
+        //    return View("Home/Login");
+        //}
 
-        [HttpGet]
-        public IActionResult Login(string returnUrl = null)
-        {
-            return View(new LoginViewModel { ReturnUrl = returnUrl });
-        }
+        //[HttpGet]
+        //public IActionResult Login(string returnUrl = null)
+        //{
+        //    return View(new LoginViewModel { ReturnUrl = returnUrl });
+        //}
 
         [Route("Login")]
         [HttpPost]
@@ -70,11 +70,12 @@ namespace AwesomeNetwork.Controllers.Account
                 RedirectToAction("Index", "Home");
         }
 
-        [Route("Logout")]
+        [Route("Home/Index")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+            Console.WriteLine($"Log out");
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
@@ -87,7 +88,7 @@ namespace AwesomeNetwork.Controllers.Account
             var user = User;
             var result = _userManager.GetUserAsync(user);
 
-            return View("User", new UserViewModel(result.Result));
+            return View("MyPage", new UserViewModel(result.Result));
         }
 
         [Authorize]
