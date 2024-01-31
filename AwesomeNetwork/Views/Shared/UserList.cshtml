@@ -1,6 +1,6 @@
 ﻿@model AwesomeNetwork.ViewModels.Account.SearchViewModel;
 
-<div class="block-reg background-white" method="post" asp-controller="AccountManager" asp-action="UserList">
+<div class="block-reg background-white" method="get" asp-controller="AccountManager" asp-action="UserList">
     @foreach (var user in @Model.UserList)
     {
             <div>
