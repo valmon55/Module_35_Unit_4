@@ -1,10 +1,19 @@
 ﻿@model AwesomeNetwork.ViewModels.Account.SearchViewModel;
 
-<div class="block-reg background-white" method="get" asp-controller="AccountManager" asp-action="UserList">
-    @foreach (var user in @Model.UserList)
+<div class="block-reg background-white">
+    @if (Model.UserList.Count != 0)
     {
+        @foreach (var user in @Model.UserList)
+        {
             <div>
                 <label>@user.GetFullName()</label>
+                <img class="main-img" src="https://thispersondoesnotexist.com" />
+                <button> Подружиться </button>
             </div>
+        }
+    }
+    else
+    {
+        <label> Поиск не дал результатов.</label>        
     }
 </div>

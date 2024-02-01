@@ -15,7 +15,7 @@ namespace AwesomeNetwork.ViewModels.Account
         public string FirstName { get; set; }
         public string Email { get; set; }            
         public DateTime BirthDate { get; set; }
-        public string UserName { get; set; }
+        public string UserName { get; set; } 
         public string Status { get; set; }
         public string About { get; set; }
     }

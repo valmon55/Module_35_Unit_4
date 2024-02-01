@@ -118,24 +118,24 @@ namespace AwesomeNetwork.Controllers.Account
                 return View("Edit", model);
             }
         }
-        [HttpGet]
-        [Route("UserList")]
-        public IActionResult UserList()
-        {
-            var model = new SearchViewModel
-            {
-                UserList = _userManager.Users.ToList()
-            };
-            return View("UserList", model);
-        }
+        //[HttpPost]
+        //[Route("UserList")]
+        //public IActionResult UserList()
+        //{
+        //    var model = new SearchViewModel
+        //    {
+        //        UserList = _userManager.Users.ToList()
+        //    };
+        //    return View("UserList", model);
+        //}
 
         [Route("UserList")]
-        [HttpGet]
+        [HttpPost]
         public IActionResult UserList(string search)
         {
             var model = new SearchViewModel
             {
-                UserList = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().Contains(search)).ToList()
+                UserList = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList()
             };
             return View("UserList", model);
         }
