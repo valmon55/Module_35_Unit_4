@@ -49,8 +49,7 @@ namespace AwesomeNetwork.Controllers.Account
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
-            {
-                  
+            {                  
                 var user = _mapper.Map<User>(model);
 
                 IdentityUser signedUser = _userManager.FindByEmailAsync(model.Email).Result;
@@ -77,7 +76,9 @@ namespace AwesomeNetwork.Controllers.Account
         public IActionResult StartEdit(UserViewModel model)
         {
             if (ModelState.IsValid)
-            {          
+            {
+                ///Как мне этого пользователя передать на страницу редактирования?
+                var user = _userManager.FindByIdAsync(model.User.Id).Result;
                 return RedirectToAction("Update", "AccountManager");
             }
             else
