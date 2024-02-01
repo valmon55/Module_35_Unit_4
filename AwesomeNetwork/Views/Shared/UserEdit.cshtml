@@ -2,21 +2,21 @@
     ViewData["Title"] = "User";
 }
 
-@model AwesomeNetwork.ViewModels.Account.UserViewModel
+@model AwesomeNetwork.ViewModels.Account.UserEditViewModel
 
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
 
-<div class="row" method="post" asp-controller="AccountManager" asp-action="update">
+<div class="row" method="post" asp-controller="AccountManager" asp-action="Update">
     <h2>Редактирование пользователя</h2>
-    <input type="text" value="ID пользователя"/>
-    <input type="text" value="Фамилия"/>
-    <input type="text" value="Имя"/>
-    <input type="text" value="Отчество"/>
-    <input type="text" value="Дата рождения"/>
-    <input type="text" value="Email"/>
+    <input asp-for="UserId" type="text" value="ID пользователя"/>
+    <input asp-for="LastName" type="text" value="Фамилия"/>
+    <input asp-for="FirstName" type="text" value="Имя"/>
+    <input asp-for="MiddleName" type="text" value="Отчество" />
+    <input asp-for="BirthDate" type="text" value="Дата рождения"/>
+    <input asp-for="Email" type="text" value="Email"/>
     <input type="text" value="URL"/>
-    <input type="text" value="status"/>
-    <input type="text" value="about"/>
+    <input asp-for="Status" type="text" value="status"/>
+    <input asp-for="About" type="text" value="about"/>
     <input class="btn_submit" type="submit" value="Редактировать" />
 </div>
