@@ -73,10 +73,20 @@ namespace AwesomeNetwork.Controllers.Account
 
         [Authorize]
         [Route("Update")]
-        [HttpGet]
-        public IActionResult StartEdit()
+        [HttpPost]
+        public IActionResult StartEdit(UserViewModel model)
         {
-            return RedirectToAction("Update", "AccountManager");
+            if (ModelState.IsValid)
+            {          
+                return RedirectToAction("Update", "AccountManager");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+            }
+            
+
+            return RedirectToAction("MyPage", "AccountManager");
         }
 
         [Route("Home/Index")]
