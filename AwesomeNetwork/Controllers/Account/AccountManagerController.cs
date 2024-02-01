@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -75,7 +76,7 @@ namespace AwesomeNetwork.Controllers.Account
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            Console.WriteLine($"Log out");
+            //Console.WriteLine($"Log out");
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }

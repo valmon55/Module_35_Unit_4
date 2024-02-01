@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "UserPage";
 }
-
+@using System.Globalization
 @model AwesomeNetwork.ViewModels.Account.UserViewModel
 
 <link rel="stylesheet" href="~/css/user-page.css" />
@@ -20,7 +20,7 @@
         <hr>
             <form>
                 <p>Статус: <b>@Model.User.Status</b></p>
-                <p>Дата рождения: <b>@Model.User.BirthDate</b></p>
+            <p>Дата рождения: <b>@Model.User.BirthDate.Day @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(@Model.User.BirthDate.Month) @Model.User.BirthDate.Year г.</b></p>
                 <p>О себе: <b>@Model.User.About</b></p>
                 <p>Email: <b>@Model.User.Email</b></p>
             </form>

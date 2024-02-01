@@ -7,7 +7,7 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
 
-<div class="row">
+<div class="row" method="post" asp-controller="AccountManager" asp-action="update">
     <h2>Редактирование пользователя</h2>
     <input type="text" value="ID пользователя"/>
     <input type="text" value="Фамилия"/>
