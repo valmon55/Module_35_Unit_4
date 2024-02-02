@@ -72,7 +72,7 @@ namespace AwesomeNetwork.Controllers.Account
 
         [Authorize]
         [Route("Update")]
-        [HttpPost]
+        [HttpGet]
         public IActionResult StartEdit(UserViewModel model)
         {
             if (ModelState.IsValid)
