@@ -73,26 +73,12 @@ namespace AwesomeNetwork.Controllers.Account
         [Authorize]
         [Route("Update")]
         [HttpGet]
-        public async Task<IActionResult> StartEdit(/*UserViewModel model*/)
+        public async Task<IActionResult> StartEdit()
         {
             var userDb = await _userManager.GetUserAsync(User);
             var editModel = _mapper.Map<UserEditViewModel>(userDb);
 
             return View("UserEdit", editModel);
-            //if (ModelState.IsValid)
-            //{
-            //    ///Как мне этого пользователя передать на страницу редактирования?
-            //    var user = User;
-            //    var result = await _userManager.GetUserAsync(user);
-            //    return RedirectToAction("Update", "AccountManager", result);
-            //}
-            //else
-            //{
-            //    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
-            //}
-            
-
-            //return RedirectToAction("MyPage", "AccountManager");
         }
 
         [Route("Home/Index")]
