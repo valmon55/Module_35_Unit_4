@@ -7,44 +7,46 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
 
-<h2>Редактирование пользователя</h2>
-<form class="row" method="post" asp-controller="AccountManager" asp-action="Update">
-    <div asp-validation-summary="ModelOnly"></div>
-    <div class=" mrgn">
-        <input asp-for="UserId" type="text" value="@Model.UserId"/>
-        <span asp-validation-for="UserId" class="text-danger"></span>
-    </div>
-    <div class=" mrgn">
-        <input asp-for="LastName" type="text" value="@Model.LastName" />
-        <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
-    <div class=" mrgn">
-        <input asp-for="FirstName" type="text" value="@Model.FirstName" />
-        <span asp-validation-for="FirstName" class="text-danger"></span>
-    </div>
-    <div class=" mrgn">
-        <input asp-for="MiddleName" type="text" value="@Model.MiddleName" />
-        <span asp-validation-for="MiddleName" class="text-danger"></span>
-    </div>
-    <div class=" mrgn">
-        <input asp-for="BirthDate" type="date" value="@Model.BirthDate" />
-        <span asp-validation-for="BirthDate" class="text-danger"></span>
-    </div>
-    <div class=" mrgn">
-        <input asp-for="Email" type="text" value="@Model.Email" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class=" mrgn">
-        <input asp-for="Image" type="text" value="@Model.Image" />
-        <span asp-validation-for="Image" class="text-danger"></span>
-    </div>
-    <div class=" mrgn">
-        <input asp-for="Status" type="text" value="@Model.Status" />
-        <span asp-validation-for="Status" class="text-danger"></span>
-    </div>
-    <div class=" mrgn">
-        <input asp-for="About" type="text" value="@Model.About" />
-        <span asp-validation-for="About" class="text-danger"></span>
-    </div>
-    <input class="btn_submit" type="submit" value="Редактировать" />
-</form>
+<div class="block-reg background-white">
+    <h2>Редактирование пользователя</h2>
+    <form class="frm" method="post" asp-controller="AccountManager" asp-action="Update">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="frm_text mrgn">
+            <input class="frm_text" asp-for=" UserId" type="text" value="@Model.UserId" />
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="frm mrgn">
+            <input class="frm_text" asp-for=" LastName" type="text" value="@Model.LastName" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="frm mrgn">
+            <input class="frm_text" asp-for=" FirstName" type="text" value="@Model.FirstName" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="frm mrgn">
+            <input class="frm_text" asp-for="MiddleName" type="text" value="@Model.MiddleName" />
+            <span asp-validation-for="MiddleName" class="text-danger"></span>
+        </div>
+        <div class="frm mrgn">
+            <input asp-for="BirthDate" type="date" value="@Model.BirthDate" />
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+        </div>
+        <div class="frm mrgn">
+            <input class="frm_text" asp-for="Email" type="text" value="@Model.Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="frm mrgn">
+            <input class="frm_text" asp-for="Image" type="text" value="@Model.Image" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <div class="frm mrgn">
+            <input class="frm_text" asp-for="Status" type="text" value="@Model.Status" />
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="frm mrgn">
+            <input class="frm_text" asp-for="About" type="text" value="@Model.About" />
+            <span asp-validation-for="About" class="text-danger"></span>
+        </div>
+        <input class="btn_submit" type="submit" value="Редактировать" />
+    </form>
+</div>
