@@ -105,13 +105,13 @@ namespace AwesomeNetwork.Controllers.Account
                 }
                 else
                 {
-                    return RedirectToAction("Edit", "AccountManager");
+                    return RedirectToAction("UserEdit", "AccountManager");
                 }
             }
             else
             {
                 ModelState.AddModelError("", "Некорректные данные");
-                return View("Edit", model);
+                return View("UserEdit", model);
             }
         }
         //[HttpPost]
