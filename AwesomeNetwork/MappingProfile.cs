@@ -3,6 +3,7 @@ using AwesomeNetwork.Models.Users;
 using AwesomeNetwork.ViewModels.Account;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace AwesomeNetwork
                 .ForMember(x => x.Email, opt => opt.MapFrom(c => c.EmailReg))
                 .ForMember(x => x.UserName, opt => opt.MapFrom(c => c.Login));
             CreateMap<LoginViewModel, User>();
+            CreateMap<User, UserEditViewModel>();
         }
     }
 }

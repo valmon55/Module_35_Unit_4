@@ -9,14 +9,14 @@
 
 <div class="row" method="post" asp-controller="AccountManager" asp-action="Update">
     <h2>Редактирование пользователя</h2>
-    <input asp-for="UserId" type="text" value="ID пользователя"/>
-    <input asp-for="LastName" type="text" value="Фамилия"/>
-    <input asp-for="FirstName" type="text" value="Имя"/>
-    <input asp-for="MiddleName" type="text" value="Отчество" />
-    <input asp-for="BirthDate" type="text" value="Дата рождения"/>
-    <input asp-for="Email" type="text" value="Email"/>
+    <input asp-for="UserId" type="text" value="@Model.UserId"/>
+    <input asp-for="LastName" type="text" value="@Model.LastName"/>
+    <input asp-for="FirstName" type="text" value="@Model.FirstName"/>
+    <input asp-for="MiddleName" type="text" value="@Model.MiddleName" />
+    <input asp-for="BirthDate" type="text" value="@Model.BirthDate"/>
+    <input asp-for="Email" type="text" value="@Model.Email"/>
     <input type="text" value="URL"/>
-    <input asp-for="Status" type="text" value="status"/>
-    <input asp-for="About" type="text" value="about"/>
+    <input asp-for="Status" type="text" value="@Model.Status"/>
+    <input asp-for="About" type="text" value="@Model.About"/>
     <input class="btn_submit" type="submit" value="Редактировать" />
 </div>
