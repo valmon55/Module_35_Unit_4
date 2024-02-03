@@ -73,13 +73,14 @@ namespace AwesomeNetwork.Controllers.Account
         [Authorize]
         [Route("Update")]
         [HttpGet]
-        public IActionResult StartEdit(UserViewModel model)
+        public async Task<IActionResult> StartEdit(UserViewModel model)
         {
             if (ModelState.IsValid)
             {
                 ///Как мне этого пользователя передать на страницу редактирования?
-                var user = _userManager.FindByIdAsync(model.User.Id).Result;
-                return RedirectToAction("Update", "AccountManager");
+                var user = User;
+                var result = await _userManager.GetUserAsync(user);
+                return RedirectToAction("Update", "AccountManager", result);
             }
             else
             {
