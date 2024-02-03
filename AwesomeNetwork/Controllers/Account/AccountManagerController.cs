@@ -29,20 +29,6 @@ namespace AwesomeNetwork.Controllers.Account
             _mapper = mapper;
         }
 
-
-        //[Route("Login")]
-        //[HttpGet]
-        //public IActionResult Login()
-        //{
-        //    return View("Home/Login");
-        //}
-
-        //[HttpGet]
-        //public IActionResult Login(string returnUrl = null)
-        //{
-        //    return View(new LoginViewModel { ReturnUrl = returnUrl });
-        //}
-
         [Route("Login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
