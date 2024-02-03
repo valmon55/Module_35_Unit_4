@@ -7,16 +7,36 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
 
-<div class="row" method="post" asp-controller="AccountManager" asp-action="Update">
-    <h2>Редактирование пользователя</h2>
-    <input asp-for="UserId" type="text" value="@Model.UserId"/>
-    <input asp-for="LastName" type="text" value="@Model.LastName"/>
-    <input asp-for="FirstName" type="text" value="@Model.FirstName"/>
-    <input asp-for="MiddleName" type="text" value="@Model.MiddleName" />
-    <input asp-for="BirthDate" type="text" value="@Model.BirthDate"/>
-    <input asp-for="Email" type="text" value="@Model.Email"/>
-    <input type="text" value="URL"/>
-    <input asp-for="Status" type="text" value="@Model.Status"/>
-    <input asp-for="About" type="text" value="@Model.About"/>
+<h2>Редактирование пользователя</h2>
+<form class="row" method="post" asp-controller="AccountManager" asp-action="Update">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class=" mrgn">
+        <input asp-for="UserId" type="text" value="@Model.UserId"/>
+        <span asp-validation-for="UserId" class="text-danger"></span>
+    </div>
+    <div class=" mrgn">
+        <input asp-for="LastName" type="text" value="@Model.LastName" />
+    </div>
+    <div class=" mrgn">
+        <input asp-for="FirstName" type="text" value="@Model.FirstName" />
+    </div>
+    <div class=" mrgn">
+        <input asp-for="MiddleName" type="text" value="@Model.MiddleName" />
+    </div>
+    <div class=" mrgn">
+        <input asp-for="BirthDate" type="text" value="@Model.BirthDate" />
+    </div>
+    <div class=" mrgn">
+        <input asp-for="Email" type="text" value="@Model.Email" />
+    </div>
+    <div class=" mrgn">
+        <input type="text" value="URL" />
+    </div>
+    <div class=" mrgn">
+        <input asp-for="Status" type="text" value="@Model.Status" />
+    </div>
+    <div class=" mrgn">
+        <input asp-for="About" type="text" value="@Model.About" />
+    </div>
     <input class="btn_submit" type="submit" value="Редактировать" />
-</div>
+</form>
