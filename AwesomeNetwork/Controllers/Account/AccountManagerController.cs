@@ -68,8 +68,7 @@ namespace AwesomeNetwork.Controllers.Account
         }
 
         [Route("Logout")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             //Console.WriteLine($"Log out");
