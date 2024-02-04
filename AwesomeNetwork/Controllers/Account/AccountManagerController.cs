@@ -71,7 +71,6 @@ namespace AwesomeNetwork.Controllers.Account
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
-            //Console.WriteLine($"Log out");
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
