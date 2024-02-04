@@ -160,17 +160,6 @@ namespace AwesomeNetwork.Controllers.Account
             return model;
         }
 
-        private async Task<List<User>> GetAllFriend()
-        {
-            var user = User;
-
-            var result = await _userManager.GetUserAsync(user);
-
-            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
-
-            return repository.GetFriendsByUser(result);
-        }
-
         [Route("AddFriend")]
         [HttpPost]
         public async Task<IActionResult> AddFriend(string id)
