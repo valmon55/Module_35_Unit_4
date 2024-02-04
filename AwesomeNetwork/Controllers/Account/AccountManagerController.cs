@@ -67,7 +67,7 @@ namespace AwesomeNetwork.Controllers.Account
             return View("UserEdit", editModel);
         }
 
-        [Route("Home/Index")]
+        [Route("Logout")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
