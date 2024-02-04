@@ -1,17 +1,21 @@
 ﻿@model AwesomeNetwork.ViewModels.Account.SearchViewModel;
 
+<link rel="stylesheet" href="~/css/main-page.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+
+
 <div class="block-reg background-white">
     @if (Model.UserList.Count != 0)
     {
         @foreach (var user in @Model.UserList)
         {
-            <div>
+            <div class="friens-block">
                 <label>@user.GetFullName()</label>
                 @if (!user.IsFriendWithCurrent)
                 {
                     <form asp-controller="AccountManager" asp-action="AddFriend" asp-route-id="@user.Id" method="post" >
-                    <img class="main-img" src="https://thispersondoesnotexist.com" />
-                    <button type="submit" class="btn btn-sm btn-primary"> Добавить в друзья </button>
+                        <img class="friend-img" src="https://thispersondoesnotexist.com" />
+                        <button type="submit" class="btn btn-sm btn-primary"> Добавить в друзья </button>
                     </form>
                 }
             </div>
