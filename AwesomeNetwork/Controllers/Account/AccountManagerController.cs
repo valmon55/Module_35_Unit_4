@@ -86,7 +86,7 @@ namespace AwesomeNetwork.Controllers.Account
             var result = _userManager.GetUserAsync(user);
             var model = new UserViewModel(result.Result);
             model.Friends = await GetAllFriend(model.User);
-
+             
             return View("MyPage", model);
         }
 
