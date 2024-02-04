@@ -87,7 +87,7 @@ namespace AwesomeNetwork.Controllers.Account
             var model = new UserViewModel(result.Result);
             model.Friends = await GetAllFriend(model.User);
 
-            return View("MyPage", "AccountManager");
+            return View("MyPage", model);
         }
 
         [Authorize]

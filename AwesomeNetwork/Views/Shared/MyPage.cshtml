@@ -24,6 +24,28 @@
         <hr>
             <p>Друзья</p>
         <hr>
+            <div>
+                @if(Model.Friends.Count != 0)
+                {
+                @foreach(var friend in Model.Friends)
+                {
+                    <div class="friends-block">
+                        <img class="friend-img" src="https://thispersondoesnotexist.com" />
+                        <label> @friend.GetFullName()</label>
+                        <form asp-controller="AccountManager" asp-action="DeleteFriend" method="post" asp-route-id="@friend.Id">
+                            <button type="submit"> Удалить из друзей </button>
+                        </form>
+                    </div>
+                }
+                }
+                else
+                {
+                    <div>
+                        <label> У вас пока нет друзей</label>
+                    </div>
+                }
+            </div>
+        <hr>
     </div>
 </div>
 

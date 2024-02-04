@@ -27,7 +27,12 @@
     width: 500px;
     height: 500px;
 }
-
+.friends-block {
+    justify-content: space-around; 
+}
+.friend-img{
+    width: 10%;
+}
 /*.main-img {
     width: 100%;
     height: 100%;
