@@ -133,6 +133,8 @@ namespace AwesomeNetwork.Controllers.Account
             };
             return View("UserList", model);
         }
+
+        /// При добавлении функций возникают ошибки
         //private async Task<SearchViewModel> CreateSearch(string search)
         //{
         //    var currentuser = User;
