@@ -7,6 +7,6 @@ namespace AwesomeNetwork.ViewModels.Account
     public class SearchViewModel
     {
         [Required]
-        public List<User> UserList { get; set; }
+        public List<UserWithFriendExt> UserList { get; set; }
     }
 }

@@ -21,12 +21,14 @@ namespace AwesomeNetwork.Controllers.Account
 
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper)
+        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         [Route("Login")]
@@ -125,50 +127,46 @@ namespace AwesomeNetwork.Controllers.Account
 
         [Route("UserList")]
         [HttpPost]
-        public IActionResult UserList(string search)
+        public async Task<IActionResult> UserList(string search)
         {
-            var model = new SearchViewModel
-            {
-                UserList = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList()
-            };
-            return View("UserList", model);
+            var searchResult = await CreateSearch(search);
+            return View("UserList", searchResult);
         }
 
-        /// При добавлении функций возникают ошибки
-        //private async Task<SearchViewModel> CreateSearch(string search)
-        //{
-        //    var currentuser = User;
+        private async Task<SearchViewModel> CreateSearch(string search)
+        {
+            var currentuser = User;
 
-        //    var result = await _userManager.GetUserAsync(currentuser);
+            var result = await _userManager.GetUserAsync(currentuser);
 
-        //    var list = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList();
-        //    var withfriend = await GetAllFriend();
+            var list = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList();
+            var withfriend = await GetAllFriend();
 
-        //    var data = new List<UserWithFriendExt>();
-        //    list.ForEach(x =>
-        //    {
-        //        var t = _mapper.Map<UserWithFriendExt>(x);
-        //        t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == result.Id).Count() != 0;
-        //        data.Add(t);
-        //    });
+            var data = new List<UserWithFriendExt>();
+            list.ForEach(x =>
+            {
+                var t = _mapper.Map<UserWithFriendExt>(x);
+                t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == result.Id).Count() != 0;
+                data.Add(t);
+            });
 
-        //    var model = new SearchViewModel()
-        //    {
-        //        UserList = data
-        //    };
+            var model = new SearchViewModel()
+            {
+                UserList = data
+            };
 
-        //    return model;
-        //}
+            return model;
+        }
 
-        //private async Task<List<User>> GetAllFriend()
-        //{
-        //    var user = User;
+        private async Task<List<User>> GetAllFriend()
+        {
+            var user = User;
 
-        //    var result = await _userManager.GetUserAsync(user);
+            var result = await _userManager.GetUserAsync(user);
 
-        //    var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
 
-        //    return repository.GetFriendsByUser(result);
-        //}
+            return repository.GetFriendsByUser(result);
+        }
     }
 }
