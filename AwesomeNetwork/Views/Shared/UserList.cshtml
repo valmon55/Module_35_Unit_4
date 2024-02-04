@@ -7,8 +7,13 @@
         {
             <div>
                 <label>@user.GetFullName()</label>
-                <img class="main-img" src="https://thispersondoesnotexist.com" />
-                <button> Подружиться </button>
+                @if (!user.IsFriendWithCurrent)
+                {
+                    <form asp-controller="AccountManager" asp-action="AddFriend" asp-route-id="@user.Id" method="post" >
+                    <img class="main-img" src="https://thispersondoesnotexist.com" />
+                    <button type="submit" class="btn btn-sm btn-primary"> Добавить в друзья </button>
+                    </form>
+                }
             </div>
         }
     }

@@ -80,12 +80,14 @@ namespace AwesomeNetwork.Controllers.Account
         [Authorize]
         [Route("MyPage")]
         [HttpGet]
-        public IActionResult MyPage()
+        public async Task<IActionResult> MyPage()
         {
             var user = User;
             var result = _userManager.GetUserAsync(user);
+            var model = new UserViewModel(result.Result);
+            model.Friends = await GetAllFriend(model.User);
 
-            return View("MyPage", new UserViewModel(result.Result));
+            return View("MyPage", "AccountManager");
         }
 
         [Authorize]
@@ -164,6 +166,47 @@ namespace AwesomeNetwork.Controllers.Account
 
             var result = await _userManager.GetUserAsync(user);
 
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+
+            return repository.GetFriendsByUser(result);
+        }
+
+        [Route("AddFriend")]
+        [HttpPost]
+        public async Task<IActionResult> AddFriend(string id)
+        {
+            var currentUser = User;
+            var result = await _userManager.GetUserAsync(currentUser);
+            var friend = await _userManager.FindByIdAsync(id);
+
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+            repository.AddFriend(result, friend);
+            return RedirectToAction("MyPage","AccountManager");
+        }
+
+        [Route("DeleteFriend")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteFriend(string id)
+        {
+            var currentUser = User;
+            var result = await _userManager.GetUserAsync(currentUser);
+            var friend = await _userManager.FindByIdAsync(id);
+
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+            repository.DeleteFriend(result, friend);
+
+            return RedirectToAction("MyPage", "AccountManager");
+        }
+
+        private async Task<List<User>> GetAllFriend(User user)
+        {
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+            return repository.GetFriendsByUser(user);
+        }
+        private async Task<List<User>> GetAllFriend()
+        {
+            var user = User;
+            var result = await _userManager.GetUserAsync(user);
             var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
 
             return repository.GetFriendsByUser(result);
