@@ -32,6 +32,11 @@
                     <div class="friends-block">
                         <img class="friend-img" src="https://thispersondoesnotexist.com" />
                         <label> @friend.GetFullName()</label>
+                        <div class="mrgn center-align">
+                            <form asp-controller="AccountingManager" asp-action="Chat" asp-route-id="@Model.User.Id" method="post">
+                                <button type="submit"> Чат </button>
+                            </form>
+                        </div>
                         <form asp-controller="AccountManager" asp-action="DeleteFriend" method="post" asp-route-id="@friend.Id">
                             <button type="submit"> Удалить из друзей </button>
                         </form>
