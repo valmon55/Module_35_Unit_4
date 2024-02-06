@@ -1,0 +1,78 @@
+﻿@model AwesomeNetwork.ViewModels.Account.ChatViewModel;
+
+@* Такое обновление приводит к обновлению всей страницы, включая сообщение, которое может писать пользователь. Поэтому такой вариант не годится *@
+@*<meta http-equiv="refresh" content="5">*@
+
+@*Запуск этих скриптов приводит к появлению ошибок в консоли баузера*@
+@*<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>*@
+
+
+<div class="block-reg background-white">
+    <div>
+        <form method="get" asp-controller="AccountManager" asp-action="MyPage">
+            <input class="enter_submit" type="submit" value="Назад" />
+        </form>
+    </div>
+    <div style="display:none">
+        <p id="ModelYouId">@Model.You.Id</p>
+        <p id="ModelToWhomId">@Model.ToWhom.Id</p>
+    </div>
+    <h4 class="center">Чат <b id="ModelYouFirstName">@Model.You.FirstName</b> и  @Model.ToWhom.FirstName</h4>
+
+    <div id="allMessages" class="lined-block">
+        <label class="gray-text">Сообщения</label>
+        @if (Model.History.Count != 0)
+        {
+
+            @foreach (var message in @Model.History)
+            {
+                <div>
+                    <label> @message.Sender.FirstName:</label>
+                    @message.Text
+                </div>
+            }
+        }
+        else
+        {
+            <div>
+                <label> У вас пока нет сообщений с  @Model.ToWhom.GetFullName().</label>
+            </div>
+        }
+        <div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <ul id="messagesList"></ul>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="lined-block">
+        <label class="gray-text">Новое сообщение</label>
+
+        <form id="mForm" class="frm" method="post" asp-controller="AccountManager" asp-action="NewMessage" asp-route-id="@Model.ToWhom.Id">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div>
+                <div class="mrgn">
+                    <input id="msgText" asp-for="NewMessage.message" class="form-control emojify" type="text" />
+                </div>
+                <div class="center">
+                    <input id="sendButton1" class="btn_submit" type="submit" value="Отправить сообщение / Обновить список сообщений" />
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* @Html.Raw(ViewData["Iframe"])*@
+
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+
