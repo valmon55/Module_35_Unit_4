@@ -44,6 +44,10 @@
 .frm_text {
     width: 100%;
 }
+.logo {
+    height:80px;
+    width: auto;
+}
 
 .frm {
     width: 100%;
