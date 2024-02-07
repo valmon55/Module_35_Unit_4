@@ -31,14 +31,14 @@
                 {
                 @foreach(var friend in Model.Friends)
                 {
-                    <div class="friends-block">
+                    <div class="friends-block mrgn">
                         <img class="friend-img" src="https://thispersondoesnotexist.com" />
                         <label> @friend.GetFullName()</label>
                         <div class="mrgn center-align">
                             <form asp-controller="AccountingManager" asp-action="Chat" asp-route-id="@Model.User.Id" method="post">
                                 <button class="enter_submit center" type="submit"> Чат </button>
                             </form>
-                        </div>
+                        </div class="mrgn center-align">
                         <form asp-controller="AccountManager" asp-action="DeleteFriend" method="post" asp-route-id="@friend.Id">
                             <button class="enter_submit center" type="submit"> Удалить из друзей </button>
                         </form>
