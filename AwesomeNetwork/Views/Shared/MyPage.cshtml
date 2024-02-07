@@ -35,7 +35,7 @@
                         <img class="friend-img" src="https://thispersondoesnotexist.com" />
                         <label> @friend.GetFullName()</label>
                         <div class="mrgn center-align">
-                            <form asp-controller="AccountManager" asp-action="Chat" asp-route-id="@Model.User.Id" method="post">
+                            <form asp-controller="AccountManager" asp-action="Chat" asp-route-id="@friend.Id" method="post">
                                 <button class="enter_submit center" type="submit"> Чат </button>
                             </form>
                         </div class="mrgn center-align">
