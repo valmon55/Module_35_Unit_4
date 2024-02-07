@@ -200,6 +200,39 @@ namespace AwesomeNetwork.Controllers.Account
 
             return repository.GetFriendsByUser(result);
         }
+        private async Task<ChatViewModel> GenerateChat(string id)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+            var friend = await _userManager.FindByIdAsync(id);
+
+
+            var repository = _unitOfWork.GetRepository<Message>() as MessageRepository;
+
+            var mess = repository.GetMessages(result, friend);
+
+            var model = new ChatViewModel()
+            {
+                You = result,
+                ToWhom = friend,
+                History = mess.OrderBy(x => x.Id).ToList(),
+            };
+
+            return model;
+        }
+
+        [Route("Chat")]
+        [HttpGet]
+        public async Task<IActionResult> Chat()
+        {
+
+            var id = Request.Query["id"];
+
+            var model = await GenerateChat(id);
+            return View("Chat", model);
+        }
+
         [Route("Chat")]
         [HttpPost]
         public async Task<IActionResult> Chat(string id)
@@ -235,16 +268,10 @@ namespace AwesomeNetwork.Controllers.Account
                 Text = chat.NewMessage.message
             };
             repository.Create(item);
-            var mess = repository.GetMessages(result, friend);
+            
+            var model = await GenerateChat(id);
 
-            var model = new ChatViewModel()
-            {
-                You = result,
-                ToWhom = friend,
-                History = mess.OrderBy(x => x.Id).ToList()
-            };
             return View("Chat", model);
-
         }
     }
 }
