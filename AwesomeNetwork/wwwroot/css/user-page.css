@@ -25,10 +25,13 @@
 }
 .img_block {
     width: 500px;
-    height: 500px;
+    height: auto;
 }
 .friends-block {
     justify-content: space-around; 
+}
+.friends {
+    display: flex;
 }
 .friend-img{
     width: 10%;

@@ -8,10 +8,12 @@
 <link rel="stylesheet" href="~/css/user-page.css" />
 <link rel="stylesheet" href="~/css/main-page.css" />
 
+<h2 class="center">@Model.User.GetFullName()</h2>
+
 <div class="main background-white">
     <div class="photo">
         <img class="main-img" src="https://thispersondoesnotexist.com" />
-        <a class="btn_submit" asp-controller="AccountManager" asp-action="StartEdit">Редактировать</a>        
+        <a class="enter_submit center" asp-controller="AccountManager" asp-action="StartEdit">Редактировать</a>        
     </div>
     <div class="frm_text">
         <hr>
@@ -24,7 +26,7 @@
         <hr>
             <p>Друзья</p>
         <hr>
-            <div>
+            <div class="friends">
                 @if(Model.Friends.Count != 0)
                 {
                 @foreach(var friend in Model.Friends)
@@ -34,11 +36,11 @@
                         <label> @friend.GetFullName()</label>
                         <div class="mrgn center-align">
                             <form asp-controller="AccountingManager" asp-action="Chat" asp-route-id="@Model.User.Id" method="post">
-                                <button type="submit"> Чат </button>
+                                <button class="enter_submit center" type="submit"> Чат </button>
                             </form>
                         </div>
                         <form asp-controller="AccountManager" asp-action="DeleteFriend" method="post" asp-route-id="@friend.Id">
-                            <button type="submit"> Удалить из друзей </button>
+                            <button class="enter_submit center" type="submit"> Удалить из друзей </button>
                         </form>
                     </div>
                 }
