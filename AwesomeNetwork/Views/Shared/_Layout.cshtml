@@ -20,15 +20,19 @@
     <header class="border-bottom header background-white">
             <div class="container">
                 <div class="topnav">
-                    @if (!SignInManager.IsSignedIn(User))
-                    {
-                        <a asp-area="" asp-controller="Home" asp-action="Index">SocialNetwork</a>
-                    }
-                    else
-                    {
-                        <a asp-area="" asp-controller="AccountManager" asp-action="MyPage">SocialNetwork</a>
-                    }
-                    <img class="logo" src="~/Sharpnet_logo.png" />
+                    <div>
+                        @if (!SignInManager.IsSignedIn(User))
+                        {
+                            <a asp-area="" asp-controller="Home" asp-action="Index">SocialNetwork</a>
+                        }
+                        else
+                        {
+                            <a asp-area="" asp-controller="AccountManager" asp-action="MyPage">SocialNetwork</a>
+                        }
+                    </div>
+                    <div>
+                        <img class="logo" src="~/Sharpnet_logo.png" />
+                    </div>
                     <partial name="_SearchLayoutPartial" />
                     <partial name="LogoutPartial" />
                 </div>

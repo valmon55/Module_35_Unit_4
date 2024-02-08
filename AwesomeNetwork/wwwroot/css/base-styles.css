@@ -24,7 +24,7 @@
         }
 
     .topnav .search-container {
-        float: right;
+        //float: right;
     }
 
     .topnav input[type=text] {

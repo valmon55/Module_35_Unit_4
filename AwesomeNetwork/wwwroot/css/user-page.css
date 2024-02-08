@@ -29,6 +29,7 @@
 }
 .friends-block {
     justify-content: space-around; 
+    max-width: 200px;
 }
 .friends {
     display: flex;
