@@ -142,15 +142,31 @@ namespace AwesomeNetwork.Controllers.Account
             var result = await _userManager.GetUserAsync(currentuser);
 
             var list = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains((search ?? String.Empty).ToLower())).ToList();
-            var withfriend = await GetAllFriend();
 
             var data = new List<UserWithFriendExt>();
-            list.ForEach(x =>
+            ///Если пользователь авторизован
+            ///то возможно искать его друзей
+            if (result != null)
             {
-                var t = _mapper.Map<UserWithFriendExt>(x);
-                t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == result.Id).Count() != 0;
-                data.Add(t);
-            });
+                var withfriend = await GetAllFriend();
+                list.ForEach(x =>
+                {
+                    var t = _mapper.Map<UserWithFriendExt>(x);
+                    t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == result.Id).Count() != 0;
+                    data.Add(t);
+                });
+            }
+            else
+            {
+                list.ForEach(x =>
+                {
+                    var t = _mapper.Map<UserWithFriendExt>(x);
+                    t.IsFriendWithCurrent = false;
+                    data.Add(t);
+                });
+            }
+
+
 
             var model = new SearchViewModel()
             {
