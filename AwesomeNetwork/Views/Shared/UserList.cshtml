@@ -1,4 +1,8 @@
 ﻿@model AwesomeNetwork.ViewModels.Account.SearchViewModel;
+﻿@using Microsoft.AspNetCore.Identity;
+@using AwesomeNetwork.Models.Users;
+@inject SignInManager<User> SignInManager;
+@inject UserManager<User> UserManager;
 
 <link rel="stylesheet" href="~/css/main-page.css" />
 <link rel="stylesheet" href="~/css/user-page.css" />
@@ -16,10 +20,12 @@
                 {
                     <img class="friend-img mrgn" src="https://thispersondoesnotexist.com" />
                                 <label>@user.GetFullName()</label>
-                    <form asp-controller="AccountManager" asp-action="AddFriend" asp-route-id="@user.Id" method="post" >
-                        
-                        <button type="submit" class="btn btn-sm btn-primary"> Добавить в друзья </button>
-                    </form>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <form asp-controller="AccountManager" asp-action="AddFriend" asp-route-id="@user.Id" method="post" >
+                            <button type="submit" class="btn btn-sm btn-primary"> Добавить в друзья </button>
+                        </form>
+                    }
                 }
             </div>
         }
