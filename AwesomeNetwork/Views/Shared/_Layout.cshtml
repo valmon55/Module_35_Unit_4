@@ -20,7 +20,7 @@
     <header class="border-bottom header background-white">
             <div class="container">
                 <div class="topnav">
-                    <div>
+                    <div style="display:inline">
                         @if (!SignInManager.IsSignedIn(User))
                         {
                         <a asp-area="" asp-controller="Home" asp-action="Index"><img class="logo" src="~/Sharpnet_logo.png" /></a>
@@ -32,9 +32,11 @@
                     </div>
 @*                    <div>
                         <img class="logo" src="~/Sharpnet_logo.png" />
-                    </div>*@                    
-                    <partial name="_SearchLayoutPartial" />
-                    <partial name="LogoutPartial" />
+                    </div>*@                   
+                    
+                        <partial name="_SearchLayoutPartial" />
+                        <partial name="LogoutPartial" />
+                    
                 </div>
             </div>
     </header>
