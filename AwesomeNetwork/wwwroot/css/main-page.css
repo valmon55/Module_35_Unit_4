@@ -29,8 +29,9 @@
     text-align: center;
     width: 100%;
     background-color: white;
+    display: flex;
+    flex-direction: row;
 }
-
 .btn_submit {
     background-color: #04AA6D;
     color: white;
