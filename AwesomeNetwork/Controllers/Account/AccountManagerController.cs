@@ -276,7 +276,8 @@ namespace AwesomeNetwork.Controllers.Account
             
             var model = await GenerateChat(id);
 
-            return View("Chat", model);
+            //return View("Chat", model);
+            return RedirectToAction("Chat","AccountManager", new { id = id });
         }
     }
 }
