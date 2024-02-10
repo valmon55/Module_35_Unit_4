@@ -249,7 +249,7 @@ namespace AwesomeNetwork.Controllers.Account
             return View("Chat", model);
         }
 
-        [Route("Chat")]
+        //[Route("Chat")]
         [HttpPost]
         public async Task<IActionResult> Chat(string id)
         {
@@ -257,7 +257,7 @@ namespace AwesomeNetwork.Controllers.Account
             
             return View("Chat", model);
         }
-        [Route("NewMassage")]
+        [Route("Chat")]
         [HttpPost]
         public async Task<IActionResult> NewMessage(string id, ChatViewModel chat)
         {
